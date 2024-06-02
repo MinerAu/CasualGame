@@ -7,10 +7,17 @@ using UnityEngine;
 public class CameraTargetBehaviour : MonoBehaviour
 {
     [SerializeField]                                //можем изменить скорость перемещения камеры в инспекторе
-    private float _moveSpeed = 4.0f;                //скорость перемещения камеры
+    private float _moveSpeed = 2.0f;                //скорость перемещения камеры
 
     private Vector3 _forward;                       //вектор, направленный вдаль от игрока
     private Vector3 _right;                         //вектор, направленный в правую сторону экрана
+
+    //Masalkin632(2024-06-02): границы, ограничивыввающие перемещение объекта----------------------
+    private float _upperBorder = 75;         //верхняя
+    private float _lowerBorder = -75;         //нижняя
+    private float _leftBorder = -75;          //левая
+    private float _rightBorder = 75;         //правая
+    //---------------------------------------------------------------------------------------------
 
     private void Start()
     {
@@ -43,6 +50,10 @@ public class CameraTargetBehaviour : MonoBehaviour
         Vector3 verticalMovement = _forward * _moveSpeed * Time.deltaTime * Input.GetAxis("Vertical");          //в этой строке сразу определяем нажата ли клавиша для продольного перемещения и преобразуем её в смещение
 
         transform.position += horizontalMovement + verticalMovement;                                            //определяем новое положение
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, _leftBorder, _rightBorder),
+                                         transform.position.y + horizontalMovement.y + verticalMovement.y,
+                                         Mathf.Clamp(transform.position.z, _lowerBorder, _upperBorder));
+        
     }
 
     private void MouseMove()
