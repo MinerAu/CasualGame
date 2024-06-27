@@ -31301,7 +31301,6 @@ GameObject:
   - component: {fileID: 1571596647}
   - component: {fileID: 1571596646}
   - component: {fileID: 1571596645}
-  - component: {fileID: 1571596648}
   - component: {fileID: 1571596649}
   m_Layer: 0
   m_Name: Main Camera
@@ -31352,8 +31351,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -31385,18 +31384,6 @@ Transform:
   - {fileID: 1827700198}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1571596648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1571596644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31e8f7bac6860bf49ba3d18db7fe3c7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1571596649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31409,6 +31396,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 242c73aa3360ce7469a9bb5a0847d157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minOrthographicSize: 7
+  _maxOrthographicSize: 25
 --- !u!33 &1577802397
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -37968,7 +37957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9236b1a282128040b9208e6b1a5df6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
+  _moveSpeed: 10
   _upperBorder: 180
   _lowerBorder: -120
   _leftBorder: 70

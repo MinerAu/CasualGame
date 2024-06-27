@@ -7,9 +7,13 @@ using UnityEngine;
 public class MainCameraBehaviour : MonoBehaviour
 {
     private readonly Vector3 _cameraOffsetRelativeTarget = new Vector3(-25f, 60f, -25f);            //положение камеры относительно объекта [CameraTarget]
-    private readonly float ScrollSpeed = 10.0f;                                                     //скорость скрола (изменения масштаба)
+    private readonly float _scrollSpeed = 10.0f;                                                    //скорость скрола (изменения масштаба)
     private Transform _target;                                                                      //объект, относительно которого будет располагаться камера
     private Camera _camera;                                                                         //камера, с которой будем настраивать Zoom
+
+    //Masalkin632(2024-06-27): добавим два поля для задания диапозона изменения приближения камеры
+    [SerializeField] private float _minOrthographicSize = 7f;                                       //минимальный размер области просмотра камеры
+    [SerializeField] private float _maxOrthographicSize = 25f;                                       //максимальный размер области просмотра камеры
 
     private void Start()
     {
@@ -27,27 +31,16 @@ public class MainCameraBehaviour : MonoBehaviour
         //Masalkin632(2024-06-01): делаем масштабирование камеры, в зависимости от её проекции (конус или призма), возможно два варианта:
         if (_camera.orthographic)
         {
-            _camera.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * ScrollSpeed;
+            //Masalkin632(2024-06-27): при изменении размера камеры через метод Mathf.Clamp убеждаемся, что диапазон останет в требуемых пределах
+
+            _camera.orthographicSize = Mathf.Clamp(
+                _camera.orthographicSize - Input.GetAxis("Mouse ScrollWheel") * _scrollSpeed,
+                _minOrthographicSize,
+                _maxOrthographicSize);
         }
         else
         {
-            _camera.fieldOfView -= Input.GetAxis("Mouse ScrollWheel") * ScrollSpeed;
-        }
-    }
-
-    private void Update()
-    {
-        transform.position = _target.TransformPoint(_cameraOffsetRelativeTarget);                  //установка камеры с заданым смещение от объекта [CameraTarget]
-        transform.LookAt(_target);                                                                 //доворот камеры на объект
-
-        //Masalkin632(2024-06-01): делаем масштабирование камеры, в зависимости от её проекции (конус или призма), возможно два варианта:
-        if (_camera.orthographic)
-        {
-            _camera.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * ScrollSpeed;
-        }
-        else
-        {
-            _camera.fieldOfView -= Input.GetAxis("Mouse ScrollWheel") * ScrollSpeed;
+            _camera.fieldOfView -= Input.GetAxis("Mouse ScrollWheel") * _scrollSpeed;
         }
     }
 }
