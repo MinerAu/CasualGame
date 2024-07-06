@@ -33770,6 +33770,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minOrthographicSize: 7
   _maxOrthographicSize: 25
+  _touchZoomSpeed: 0.025
 --- !u!33 &1577802397
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -40457,6 +40458,7 @@ MonoBehaviour:
   _lowerBorder: -120
   _leftBorder: 70
   _rightBorder: 410
+  _touchSpeedModifier: 0.1
 --- !u!4 &1973627481
 Transform:
   m_ObjectHideFlags: 0

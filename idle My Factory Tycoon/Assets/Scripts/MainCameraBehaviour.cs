@@ -14,6 +14,10 @@ public class MainCameraBehaviour : MonoBehaviour
     //Masalkin632(2024-06-27): добавим два поля для задания диапозона изменения приближения камеры
     [SerializeField] private float _minOrthographicSize = 7f;                                       //минимальный размер области просмотра камеры
     [SerializeField] private float _maxOrthographicSize = 25f;                                       //максимальный размер области просмотра камеры
+    [SerializeField] private float _touchZoomSpeed = 0.1f;
+
+    //Masalkin632(2024-07-06): в следующих переменных храним прикосновения
+    Touch _touch1, _touch2;
 
     private void Start()
     {
@@ -21,6 +25,28 @@ public class MainCameraBehaviour : MonoBehaviour
         transform.position = _target.TransformPoint(_cameraOffsetRelativeTarget);                   //установка камеры с заданым смещение от объекта [CameraTarget]
         transform.LookAt(_target);
         _camera = Camera.main;                                                                      //по умолчанию берём основную камеру сцены
+    }
+
+    //Masalkin632(2024-07-06): в методе Update будем реализовывать зум камеры через сенсорный экран мобильных устройств
+    private void Update()
+    {
+        if (Input.touchCount == 2)
+        {
+            _touch1 = Input.GetTouch(0);
+            _touch2 = Input.GetTouch(1);
+
+            Vector2 touch1DeltaPos = _touch1.position - _touch1.deltaPosition;
+            Vector2 touch2DeltaPos = _touch2.position - _touch2.deltaPosition;
+
+            float distanceDeltaTouches = (touch1DeltaPos - touch2DeltaPos).magnitude;
+            float distanceTouches = (_touch1.position - _touch2.position).magnitude;
+            float distance = distanceDeltaTouches - distanceTouches;
+
+            _camera.orthographicSize = Mathf.Clamp(
+                _camera.orthographicSize + distance * _touchZoomSpeed,
+                _minOrthographicSize,
+                _maxOrthographicSize);
+        }
     }
 
     private void LateUpdate()
