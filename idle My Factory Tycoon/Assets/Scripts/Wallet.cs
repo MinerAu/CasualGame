@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Wallet : MonoBehaviour
 {
-    private int coins = 0;
+    [SerializeField] private int coins = 0;
 
     public void AddCoins(int amount)
     {
         coins += amount;
-    }//вызываемый метод пополнения кошелька
+    }//ГўГ»Г§Г»ГўГ ГҐГ¬Г»Г© Г¬ГҐГІГ®Г¤ ГЇГ®ГЇГ®Г«Г­ГҐГ­ГЁГї ГЄГ®ГёГҐГ«ГјГЄГ 
 
     public bool SpendCoins(int amount)
     {
@@ -24,11 +24,11 @@ public class Wallet : MonoBehaviour
             return false;
         }
 
-    }//тратим монеты из кошелька
+    }//ГІГ°Г ГІГЁГ¬ Г¬Г®Г­ГҐГІГ» ГЁГ§ ГЄГ®ГёГҐГ«ГјГЄГ 
 
     public int GetCoins()
     {
         return coins;
-    }//получить текущее значение монет в кошельке
+    }//ГЇГ®Г«ГіГ·ГЁГІГј ГІГҐГЄГіГ№ГҐГҐ Г§Г­Г Г·ГҐГ­ГЁГҐ Г¬Г®Г­ГҐГІ Гў ГЄГ®ГёГҐГ«ГјГЄГҐ
 
 }
