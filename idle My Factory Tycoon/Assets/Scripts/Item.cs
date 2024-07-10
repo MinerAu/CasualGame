@@ -1,20 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public Texture2D imageItem { get; set; }
-    public int coinsItem { get; set; }
-    public string nameItem { get; set; }
-    public int quantityItem { get; set; }
+    [SerializeField] private string _name;
+    [SerializeField] private int _price;
+    [SerializeField] private int _quantity;
+    [SerializeField] private Sprite _icon;
 
-    public Item(Texture2D im, int coin, string name, int quantity)
-    {
-        imageItem = im;
-        coinsItem = coin;
-        nameItem = name;
-        quantityItem = quantity;
-    }
-    
+    public string Name { get => _name; }
+    public int Price { get => _price; }
+    public int Quantity { get => _quantity; set => _quantity = value; }
+    public Sprite Icon { get => _icon; }
 }
+
