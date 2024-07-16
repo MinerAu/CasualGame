@@ -35,7 +35,7 @@ public class Product : MonoBehaviour
     {
         if (requiredResourcesIndex >= 0 && requiredResourcesIndex < _requiredResources.Count)
         {
-            return _requiredResources[requiredResourcesIndex].Quantity;
+            return _requiredResources[requiredResourcesIndex].quantityItem;
         }
         else
         {

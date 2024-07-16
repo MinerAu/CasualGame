@@ -1,17 +1,32 @@
 using UnityEngine;
 
-public class ProductChecker : MonoBehaviour {
+public class ProductChecker : MonoBehaviour
+{
     [SerializeField] private Warehouse _warehouse;
 
-    public bool IsProductAvailbale(Product product) {
+    public bool IsProductAvailbale(Product product)
+    {
         bool result = true;
 
-        for (int i = 0; i < product.RequiredResourcesListCapacity; i++) {
-            result &= _warehouse.GetResource(product.GetRequiredResourceName(i)).Quantity >= product.GetRequiredResourceAmount(i);
+        for (int i = 0; i < product.RequiredResourcesListCapacity; i++)
+        {
+            string requiredResourceName = product.GetRequiredResourceName(i);
 
-            if (result == false) {
+            result &= _warehouse.GetResource(requiredResourceName).quantityItem >= product.GetRequiredResourceAmount(i);
+
+            if (result == false)
+            {
                 break;
             }
+        }
+
+        if (result)
+        {
+            Debug.Log("Enough resources");
+        }
+        else
+        {
+            Debug.Log("Not enough resources");
         }
 
         return result;

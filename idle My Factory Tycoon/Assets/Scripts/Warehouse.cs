@@ -7,24 +7,24 @@ public class Warehouse : MonoBehaviour
 
     public void AddResource(Item resource)
     {
-        int index = resources.FindIndex(r => r.Name == resource.Name);
+        int index = resources.FindIndex(r => r.nameItem == resource.nameItem);
         if (index == -1)
         {
             resources.Add(resource);
         }
         else
         {
-            resources[index].Quantity += resource.Quantity;
+            resources[index].quantityItem += resource.quantityItem;
         }
     }
 
     public void RemoveResource(Item resource)
     {
-        int index = resources.FindIndex(r => r.Name == resource.Name);
+        int index = resources.FindIndex(r => r.nameItem == resource.nameItem);
         if (index != -1)
         {
-            resources[index].Quantity -= resource.Quantity;
-            if (resources[index].Quantity <= 0)
+            resources[index].quantityItem -= resource.quantityItem;
+            if (resources[index].quantityItem <= 0)
             {
                 resources.RemoveAt(index);
             }
@@ -33,8 +33,29 @@ public class Warehouse : MonoBehaviour
 
     public Item GetResource(string name)
     {
-        int index = resources.FindIndex(r => r.Name == name);
-        return index != -1 ? resources[index] : null;
+        Item result = null;
+        foreach (Item item in resources)
+        {
+            if (item.name == name)
+            {
+                result = item;
+                break;
+            }
+        }
+
+        return result;
+
+        /*int index = resources.FindIndex(r => r.nameItem == name);
+        return index != -1 ? resources[index] : null;*/
+    }
+
+    [ContextMenu("Покажи в консоли хранимые ресупрсы")]
+    private void ShowResourcesInConsole()
+    {
+        foreach (Item item in resources)
+        {
+            Debug.Log($"Resource={item.name}");
+        }
     }
 }
 
