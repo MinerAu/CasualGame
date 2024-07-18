@@ -10,12 +10,12 @@ public class Product : MonoBehaviour
     [Tooltip("Наименование")]
     public string _name;
     [Tooltip("Количество")]
-    [SerializeField] private int _amount;
+    public int _amount;
     [Tooltip("Цена продажи")]
-    [SerializeField] private int _price;
+    public int _price;
 
     [Header("Требуемые для производства ресурсы")]
-    [SerializeField] private List<Item> _requiredResources;
+    public List<Item> _requiredResources;
 
     public int RequiredResourcesListCapacity => _requiredResources.Count;
 
@@ -23,7 +23,7 @@ public class Product : MonoBehaviour
     {
         if (requiredResourcesIndex >= 0 && requiredResourcesIndex < _requiredResources.Count)
         {
-            return _requiredResources[requiredResourcesIndex].name;
+            return _requiredResources[requiredResourcesIndex].nameItem;
         }
         else
         {

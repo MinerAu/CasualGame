@@ -11,7 +11,6 @@ public class ProductChecker : MonoBehaviour
         for (int i = 0; i < product.RequiredResourcesListCapacity; i++)
         {
             string requiredResourceName = product.GetRequiredResourceName(i);
-
             result &= _warehouse.GetResource(requiredResourceName).quantityItem >= product.GetRequiredResourceAmount(i);
 
             if (result == false)
@@ -20,14 +19,14 @@ public class ProductChecker : MonoBehaviour
             }
         }
 
-        if (result)
-        {
-            Debug.Log("Enough resources");
-        }
-        else
-        {
-            Debug.Log("Not enough resources");
-        }
+        //if (result)
+        //{
+        //    Debug.Log("Enough resources");
+        //}
+        //else
+        //{
+        //    Debug.Log("Not enough resources");
+        //}
 
         return result;
     }

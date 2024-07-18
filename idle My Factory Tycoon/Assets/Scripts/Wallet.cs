@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Wallet : MonoBehaviour
 {
-    private int coins = 0;
+    [SerializeField] private int coins = 0;
 
     public void AddCoins(int amount)
     {
