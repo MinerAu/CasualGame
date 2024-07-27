@@ -29,7 +29,6 @@ public class Warehouse : MonoBehaviour {
         foreach (Item item in resources) {
             if (item.nameItem == name) {
                 result = item;
-                break;
             }
         }
         return result;
@@ -38,7 +37,7 @@ public class Warehouse : MonoBehaviour {
     [ContextMenu("Покажи в консоли хранимые ресупрсы")]
     private void ShowResourcesInConsole() {
         foreach (Item item in resources) {
-            Debug.Log($"Resource={item.name}");
+            Debug.Log($"Resource={item.nameItem}");
         }
     }
 }

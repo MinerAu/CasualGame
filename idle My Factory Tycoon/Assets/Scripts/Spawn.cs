@@ -5,7 +5,7 @@ public class Spawn : MonoBehaviour {
     private const int PRICE_MACHINE = 100;
     private const int PRICE_WORKER = 60;
 
-    [SerializeField] private GameObject[] machineWorker;
+    public GameObject[] machineWorker;
     [SerializeField] private GameObject[] button;
 
     private Wallet wallet;
