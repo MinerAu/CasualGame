@@ -9,10 +9,14 @@ public class Product : MonoBehaviour
     [Header("Настройки производимого товара")]
     [Tooltip("Наименование")]
     public string _name;
+    [Tooltip("Наименование на русском")]
+    public string _russianName;
     [Tooltip("Количество")]
     public int _amount;
     [Tooltip("Цена продажи")]
     public int _price;
+    [Tooltip("2D иконка товара")]
+    public Sprite _image;
 
     [Header("Требуемые для производства ресурсы")]
     public List<Item> _requiredResources;
