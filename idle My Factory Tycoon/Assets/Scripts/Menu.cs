@@ -6,6 +6,7 @@ public class Menu : MonoBehaviour {
 
     private void Update() {
         if (Input.GetKey(KeyCode.Escape)) {
+            Time.timeScale = 1;
             for (int i = 0; i < menuPrducts.Length; i++) {
                 menuPrducts[i].SetActive(false);
             }

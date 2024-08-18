@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ContractSpawner : MonoBehaviour {
+public class   ContractSpawner : MonoBehaviour {
 
     [SerializeField] private List<Image> images;
     [SerializeField] private Button[] buttons;

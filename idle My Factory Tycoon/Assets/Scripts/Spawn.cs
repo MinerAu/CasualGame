@@ -7,27 +7,30 @@ public class Spawn : MonoBehaviour {
 
     public GameObject[] machineWorker;
     [SerializeField] private GameObject[] button;
-
-    private Wallet wallet;
-
-    public void Start() {
-        wallet = GetComponent<Wallet>();
-    }
+    [SerializeField] private Wallet wallet;
 
     public void SpawnWorker(int index) {
+        ActiveWorker(index);
         if (wallet.SpendCoins(PRICE_WORKER)) {
             machineWorker[index].SetActive(true);
         }
     }
 
     public void SpawnMachine(int index) {
+        ActiveMachine(index);
         if (wallet.SpendCoins(PRICE_MACHINE)) {
             machineWorker[index].SetActive(true);
         }
     }
 
-    public void Active(int indexMachine) {
-        if (wallet.GetCoins() >= PRICE_MACHINE || wallet.GetCoins() >= PRICE_WORKER) {
+    public void ActiveWorker(int indexWorker) {
+        if (wallet.GetCoins() >= PRICE_WORKER) {
+            button[indexWorker].SetActive(false);
+        }
+    }
+
+    public void ActiveMachine(int indexMachine) {
+        if (wallet.GetCoins() >= PRICE_MACHINE) {
             button[indexMachine].SetActive(false);
         }
     }

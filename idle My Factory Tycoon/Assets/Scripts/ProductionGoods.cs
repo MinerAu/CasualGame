@@ -6,7 +6,6 @@ using UnityEngine;
 using Button = UnityEngine.UI.Button;
 
 [RequireComponent(typeof(ProductChecker))]
-[RequireComponent(typeof(Wallet))]
 public class ProductionGoods : MonoBehaviour {
 
     [SerializeField] private Button[] buttons;
@@ -18,10 +17,9 @@ public class ProductionGoods : MonoBehaviour {
     [SerializeField] private AdjacentWorkersAndMachinesIncluded check;
     [SerializeField] private StartProduction startProduction;
     [SerializeField] private ContractSpawner contractSpawner;
+    [SerializeField] private Wallet wallet;
 
     private ProductChecker productChecker;
-    private Wallet wallet;
-
     private Dictionary<string, bool> items = new Dictionary<string, bool> {
         { "Chair", true },
         { "Door", true },
@@ -44,7 +42,6 @@ public class ProductionGoods : MonoBehaviour {
 
     private void Start() {
         productChecker = GetComponent<ProductChecker>();
-        wallet = GetComponent<Wallet>();
         finisheGoods = new List<string>();
     }
 
@@ -82,8 +79,8 @@ public class ProductionGoods : MonoBehaviour {
                     }
                 }
 
-                int countWeek = contractSpawner.countWeek;
-                int weekDuration = startProduction.weekDuration;
+                int countWeek = 2;//contractSpawner.countWeek;
+                int weekDuration = 40; //startProduction.weekDuration;
                 int penaltyFee = 0;
 
                 int justWeeks = weekDuration * countWeek;
@@ -91,7 +88,7 @@ public class ProductionGoods : MonoBehaviour {
                 Debug.Log(currentTime);
 
                 if (currentTime < justWeeks) {
-                    if (finisheGoods.Count >= contractSpawner.countProduct) {
+                    if (finisheGoods.Count >= 10) { //contractSpawner.countProduct) {
                         Debug.Log("Вы выполнили требования контракта!");
                         isValue = false;
                         startProduction.StopProductionAnimation();
@@ -106,7 +103,7 @@ public class ProductionGoods : MonoBehaviour {
                     yield break;
                 }
                 if (contractSpawner.isCancellationContract) {
-                    if (currentTime > justWeeks) {
+                    if (currentTime > 10) {
                         Debug.Log("Налог");
                         penaltyFee = (int)((contractSpawner.coutMoney / justWeeks) * currentTime);
                         wallet.SpendCoins(penaltyFee);
