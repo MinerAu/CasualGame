@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Spawn : MonoBehaviour {
 
@@ -9,10 +10,14 @@ public class Spawn : MonoBehaviour {
     [SerializeField] private GameObject[] button;
     [SerializeField] private Wallet wallet;
 
+    //Masalkin632(2024-08-18): событие для отображения изменившегося количества монет
+    public event UnityAction<int> CoinsAmountChanged;
+
     public void SpawnWorker(int index) {
         ActiveWorker(index);
         if (wallet.SpendCoins(PRICE_WORKER)) {
             machineWorker[index].SetActive(true);
+            CoinsAmountChanged?.Invoke(wallet.GetCoins());
         }
     }
 
@@ -20,6 +25,7 @@ public class Spawn : MonoBehaviour {
         ActiveMachine(index);
         if (wallet.SpendCoins(PRICE_MACHINE)) {
             machineWorker[index].SetActive(true);
+            CoinsAmountChanged?.Invoke(wallet.GetCoins());
         }
     }
 
