@@ -38,19 +38,19 @@ public class ContractsCreator : MonoBehaviour
 
     public Contract CreateRandomContract()
     {
-        int minAmount = 1;
-        int maxAmount = 10;
+        int minAmount = 5;
+        int maxAmount = 30;
 
         string customer = Randomizer.GetObjectFromArray(_customers).ToString();
         string item = Randomizer.GetObjectFromArray(_products.Select(x => x._russianName).ToArray()).ToString();
-        int amount = Randomizer.GetNumber(minAmount, maxAmount);
-        int duration = Mathf.Clamp(amount * 2 + Randomizer.GetNumber(-3, 3), 5, 100);
-        int award = (int)Mathf.Round(GetItemProducingCost(item) * amount * 2.2f);
+        int Amount = Randomizer.GetNumber(minAmount, maxAmount);
+        int duration = Mathf.Clamp(Amount * 2 + Randomizer.GetNumber(-3, 3), 1, 7);
+        int award = (int)Mathf.Round(GetItemProducingCost(item) * Amount * 2.2f);
 
-        Contract newContract = new Contract(customer, item, amount, duration, award);
+        Contract newcContract = new Contract(customer, item, Amount, duration, award);
 
-        ContractCreated?.Invoke(newContract);
-        return newContract;
+        ContractCreated?.Invoke(newcContract);
+        return newcContract;
     }
 
     private List<Contract> GenerateThreeRandomContracts()

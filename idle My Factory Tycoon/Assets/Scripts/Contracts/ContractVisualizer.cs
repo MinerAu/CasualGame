@@ -163,7 +163,7 @@ public class ContractVisualizer : MonoBehaviour
         Text[] texts = this.GetComponentsInChildren<Text>(false);
 
         int id = 0;
-        string item = "";
+        string Item = "";
         int amount = 0;
         string customer = "";
         int duration = 0;
@@ -178,7 +178,7 @@ public class ContractVisualizer : MonoBehaviour
                     break;
 
                 case ItemTextName:
-                    item = text.text;
+                    Item = text.text;
                     break;
 
                 case RequiredAmountTextName:
@@ -199,7 +199,7 @@ public class ContractVisualizer : MonoBehaviour
             }
         }
 
-        return new Contract(id, customer, item, amount, duration, award);
+        return new Contract(id, customer, Item, amount, duration, award);
     }*/
 
     private bool AcceptContract(Contract contract)

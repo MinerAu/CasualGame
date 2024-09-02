@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class Contract
 {
     private static int s_nextContractId = 1;
