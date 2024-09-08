@@ -17,6 +17,8 @@ public class Product : MonoBehaviour
     public int _price;
     [Tooltip("2D иконка товара")]
     public Sprite _image;
+    [Tooltip("Трудоёмкость")]
+    public int _complexity;
 
     [Header("Требуемые для производства ресурсы")]
     public List<Item> _requiredResources;

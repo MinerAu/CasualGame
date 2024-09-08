@@ -13,7 +13,7 @@ public class StartProduction : MonoBehaviour {
         adjacentWorkersAndMachinesIncluded = GetComponent<AdjacentWorkersAndMachinesIncluded>();
     }
 
-    public void StartProductionAnimation() {
+    /*public void StartProductionAnimation() {
         foreach (Animator anim in animator) {
             if (adjacentWorkersAndMachinesIncluded.IsEnabled()) {
                 anim.SetBool("IsAnimating", true);
@@ -27,5 +27,5 @@ public class StartProduction : MonoBehaviour {
                 anim.SetBool("IsAnimating", false);
             }
         }
-    }
+    }*/
 }

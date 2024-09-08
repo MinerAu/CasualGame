@@ -15,12 +15,17 @@ public class Warehouse : MonoBehaviour {
     }
 
     public void RemoveResource(Item resource) {
+        Debug.Log("Remove resource");
         int index = resources.FindIndex(r => r.nameItem == resource.nameItem);
         if (index != -1) {
             resources[index].quantityItem -= resource.quantityItem;
             if (resources[index].quantityItem <= 0) {
                 resources.RemoveAt(index);
             }
+        }
+        else
+        {
+            Debug.Log("unknown resource!!!");
         }
     }
 

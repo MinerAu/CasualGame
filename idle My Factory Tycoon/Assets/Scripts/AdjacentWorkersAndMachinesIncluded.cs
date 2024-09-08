@@ -1,8 +1,27 @@
 using System;
 using UnityEngine;
 
-public class AdjacentWorkersAndMachinesIncluded : MonoBehaviour {
-    [SerializeField] private Spawn spawn;
+public class AdjacentWorkersAndMachinesIncluded : MonoBehaviour
+{
+    [SerializeField] private Worker[] _workers;
+    
+    public bool TryGetFreeWorker(out Worker freeWorker)
+    {
+        freeWorker = null;
+
+        foreach (Worker worker in _workers)
+        {
+            if (worker.IsReadyForWork)
+            {
+                freeWorker = worker;
+                return true;
+            }
+        }
+
+        Debug.Log("Свободных рабочих не найдено!");
+        return false;
+    }
+    /*[SerializeField] private Spawn spawn;
 
     [NonSerialized] public int activeWorkers = 0;
 
@@ -34,5 +53,5 @@ public class AdjacentWorkersAndMachinesIncluded : MonoBehaviour {
             }
         }
         return activeWorkers;
-    }
+    }*/
 }

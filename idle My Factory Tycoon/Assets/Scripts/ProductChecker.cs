@@ -6,28 +6,20 @@ public class ProductChecker : MonoBehaviour
 
     public bool IsProductAvailbale(Product product)
     {
-        bool result = true;
+        bool enoughResources = true;
 
         for (int i = 0; i < product.RequiredResourcesListCapacity; i++)
         {
             string requiredResourceName = product.GetRequiredResourceName(i);
-            result &= _warehouse.GetResource(requiredResourceName).quantityItem >= product.GetRequiredResourceAmount(i);
+            enoughResources &= _warehouse.GetResource(requiredResourceName).quantityItem >= product.GetRequiredResourceAmount(i);
 
-            if (result == false)
+            if (enoughResources == false)
             {
-                break;
+                Debug.Log("Недостаточно ресурсов!");
+                return enoughResources;
             }
         }
 
-        //if (result)
-        //{
-        //    Debug.Log("Enough resources");
-        //}
-        //else
-        //{
-        //    Debug.Log("Not enough resources");
-        //}
-
-        return result;
+        return enoughResources;
     }
 }

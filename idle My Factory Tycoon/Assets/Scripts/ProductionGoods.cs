@@ -11,7 +11,7 @@ public class ProductionGoods : MonoBehaviour
 {
 
     [SerializeField] private Button[] buttons;
-    [SerializeField] private Product[] product;
+    [SerializeField] private Product[] products;
 
     [SerializeField] private QuantitySet quantitySet;
     [SerializeField] private Warehouse warehouse;
@@ -47,7 +47,7 @@ public class ProductionGoods : MonoBehaviour
         productChecker = GetComponent<ProductChecker>();
     }
 
-    private void Update()
+    /*private void Update()
     {
         if (isValue)
         {
@@ -60,9 +60,9 @@ public class ProductionGoods : MonoBehaviour
         {
             currentTime += Time.deltaTime * 1f;
         }
-    }
+    }*/
 
-    public void MakeProduct(Button clickedButton)
+    /*public void MakeProduct(Button clickedButton)
     {
         var index = Array.IndexOf(buttons, clickedButton);
         if (index != -1 && check.IsEnabled())
@@ -73,6 +73,7 @@ public class ProductionGoods : MonoBehaviour
 
     private IEnumerator ProduceProduct(Product currentProduct)
     {
+        Debug.Log($"Produce product");
         if (productChecker.IsProductAvailbale(currentProduct))
         {
             Product = currentProduct;
@@ -84,8 +85,10 @@ public class ProductionGoods : MonoBehaviour
 
             int totalProduced = 0;
 
-            for (var i = 0; i < quantitySet.quantity; i++)
+            //for (var i = 0; i < quantitySet.quantity; i++)
+            for (var i = 0; i < 1; i++)
             {
+                Debug.Log($"i={i}");
                 int productsToProduce = check.SumWorkersMachine();
 
                 for (int j = 0; j < productsToProduce; j++)
@@ -148,15 +151,35 @@ public class ProductionGoods : MonoBehaviour
 
     private void OverkillResources(Warehouse warehouse, Dictionary<string, int> requiredResources, Product currentProduct)
     {
-        foreach (var resource in warehouse.resources)
+        Debug.Log("OverkillResources");
+
+        foreach (var resource in requiredResources)
+        {
+            warehouse.RemoveResource(new Item(resource.Key, resource.Value));
+        }
+
+        /*foreach (var resource in warehouse.resources)
         {
             if (requiredResources.TryGetValue(resource.nameItem, out var quantity))
             {
                 if (productChecker.IsProductAvailbale(currentProduct))
                 {
-                    resource.quantityItem -= quantity;
+                    //resource.quantityItem -= quantity;
+                    warehouse.RemoveResource()
                 }
             }
+        }
+    }*/
+
+    public void MakeProduct(Product product)
+    {
+        if (check.TryGetFreeWorker(out Worker worker) && productChecker.IsProductAvailbale(product))
+        {
+            StartCoroutine(worker.Produce(product));
+        }
+        else
+        {
+            Debug.Log($"Не могу создать [{product._name}]!");
         }
     }
 }
