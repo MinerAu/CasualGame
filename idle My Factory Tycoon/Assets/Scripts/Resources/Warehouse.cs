@@ -1,31 +1,42 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
-public class Warehouse : MonoBehaviour {
+public class Warehouse : MonoBehaviour
+{
     public List<Item> resources;
+    public event UnityAction<string, int> ResourcesAmountChanged;
 
-    public void AddResource(Item resource) {
-        int index = resources.FindIndex(r => r.nameItem == resource.nameItem);
-        if (index == -1) {
-            resources.Add(resource);
-        }
-        else {
-            resources[index].quantityItem += resource.quantityItem;
-        }
-    }
+    public void AddResource(string resourceName, int resourceAmount)
+    {
+        int index = resources.FindIndex(r => r.nameItem == resourceName);
 
-    public void RemoveResource(Item resource) {
-        Debug.Log("Remove resource");
-        int index = resources.FindIndex(r => r.nameItem == resource.nameItem);
-        if (index != -1) {
-            resources[index].quantityItem -= resource.quantityItem;
-            if (resources[index].quantityItem <= 0) {
-                resources.RemoveAt(index);
-            }
+        if (index == -1)
+        {
+            Debug.Log("unknown resource!!!");
         }
         else
         {
+            resources[index].quantityItem += resourceAmount;
+            ResourcesAmountChanged?.Invoke(resources[index].nameItem, resources[index].quantityItem);
+        }
+    }
+
+    public void RemoveResource(string resourceName, int resourceAmount)
+    {
+        int index = resources.FindIndex(r => r.nameItem == resourceName);
+
+        if (index == -1)
+        {
             Debug.Log("unknown resource!!!");
+        }
+        else
+        {
+            resources[index].quantityItem -= resourceAmount;
+            ResourcesAmountChanged?.Invoke(resources[index].nameItem, resources[index].quantityItem);
         }
     }
 

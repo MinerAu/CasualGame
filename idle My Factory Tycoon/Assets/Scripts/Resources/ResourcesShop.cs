@@ -24,8 +24,9 @@ public class ResourcesShop : MonoBehaviour
 
         if (_wallet.SpendCoins(resource.coinsItem))
         {
-            resource.quantityItem++;
-            ResourcesAmountChanged?.Invoke(resourceName, resource.quantityItem);
+            //resource.quantityItem++;
+            _warehouse.AddResource(resourceName, 1);
+            //ResourcesAmountChanged?.Invoke(resourceName, resource.quantityItem);
             ResourcesAmountChanged?.Invoke("coins", _wallet.GetCoins());
         }
     }

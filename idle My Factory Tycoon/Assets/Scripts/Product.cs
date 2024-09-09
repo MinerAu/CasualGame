@@ -25,7 +25,25 @@ public class Product : MonoBehaviour
 
     public int RequiredResourcesListCapacity => _requiredResources.Count;
 
-    public string GetRequiredResourceName(int requiredResourcesIndex)
+    public Dictionary<string, int> GetRequiredResources()
+    {
+        Dictionary<string, int> result = new Dictionary<string, int>();
+
+        foreach (Item item in _requiredResources)
+        {
+            if (result.ContainsKey(item.nameItem))
+            {
+                result[item.nameItem]++;
+            }
+            else
+            {
+                result.Add(item.nameItem, 1);
+            }
+        }
+
+        return result;
+    }
+    /*public string GetRequiredResourceName(int requiredResourcesIndex)
     {
         if (requiredResourcesIndex >= 0 && requiredResourcesIndex < _requiredResources.Count)
         {
@@ -47,5 +65,5 @@ public class Product : MonoBehaviour
         {
             throw new System.ArgumentOutOfRangeException(nameof(requiredResourcesIndex));
         }
-    }
+    }*/
 }

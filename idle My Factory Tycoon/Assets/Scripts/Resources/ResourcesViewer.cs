@@ -44,7 +44,8 @@ public class ResourcesViewer : MonoBehaviour
     private void OnEnable()
     {
         _resourcesShop.ResourcesAmountChanged += ShowResourceAmount;
-        _spawn.CoinsAmountChanged += ShowCoinsAmount;
+        _warehouse.ResourcesAmountChanged += ShowResourceAmount;
+        //_spawn.CoinsAmountChanged += ShowCoinsAmount;
     }
 
     private void Start()
@@ -60,7 +61,8 @@ public class ResourcesViewer : MonoBehaviour
     private void OnDisable()
     {
         _resourcesShop.ResourcesAmountChanged -= ShowResourceAmount;
-        _spawn.CoinsAmountChanged -= ShowCoinsAmount;
+        _warehouse.ResourcesAmountChanged -= ShowResourceAmount;
+        //_spawn.CoinsAmountChanged -= ShowCoinsAmount;
     }
 
     public void ShowResourceAmount(string resourceName, int resourceAmount)

@@ -175,6 +175,9 @@ public class ProductionGoods : MonoBehaviour
     {
         if (check.TryGetFreeWorker(out Worker worker) && productChecker.IsProductAvailbale(product))
         {
+            //перед запуском корутины спишем ресурсы со склада
+            productChecker.TakeResourcesForProductFromWarehouse(product);
+
             StartCoroutine(worker.Produce(product));
         }
         else
