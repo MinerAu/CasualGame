@@ -7,6 +7,7 @@ public class Worker : MonoBehaviour
 {
     [SerializeField] private int _level;
     [SerializeField] private Machine _machine;
+    [SerializeField] private Warehouse _warehouse;
 
     private bool _isWorking = false;
     private Animator _animator;
@@ -36,6 +37,7 @@ public class Worker : MonoBehaviour
 
             yield return new WaitForSecondsRealtime(product._complexity / GetSpeedAcordingByLevel());
 
+            _warehouse.AddProduct(product._name, 1);
             _animator.SetBool("IsAnimating", false);
             _isWorking = false;
 

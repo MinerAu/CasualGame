@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class Warehouse : MonoBehaviour
 {
     public List<Item> resources;
+    public List<Product> products;
     public event UnityAction<string, int> ResourcesAmountChanged;
 
     public void AddResource(string resourceName, int resourceAmount)
@@ -48,6 +49,75 @@ public class Warehouse : MonoBehaviour
             }
         }
         return result;
+    }
+
+    public void AddProduct(string productName, int productAmount)
+    {
+        int index = products.FindIndex(p => p._name == productName);
+
+        if (index == -1)
+        {
+            index = products.FindIndex(p => p._russianName == productName);
+            
+            if (index == -1)
+            {
+                Debug.Log("Error: unknown resource!");
+            }
+            else
+            {
+                products[index]._amount += productAmount;
+            }
+        }
+        else
+        {
+            products[index]._amount += productAmount;
+        }
+    }
+
+    public void RemoveProduct(string productName, int productAmount)
+    {
+        int index = products.FindIndex(p => p._name == productName);
+
+        if (index == -1)
+        {
+            index = products.FindIndex(p => p._russianName == productName);
+
+            if (index == -1)
+            {
+                Debug.Log("Error: unknown resource!");
+            }
+            else
+            {
+                products[index]._amount -= productAmount;
+            }
+        }
+        else
+        {
+            products[index]._amount -= productAmount;
+        }
+    }
+
+    public int GetProductAmount(string productName)
+    {
+        int index = products.FindIndex(p => p._name == productName);
+
+        if (index == -1)
+        {
+            index = products.FindIndex(p => p._russianName == productName);
+
+            if (index == -1)
+            {
+                return 0;
+            }
+            else
+            {
+                return products[index]._amount;
+            }
+        }
+        else
+        {
+            return products[index]._amount;
+        }
     }
 
     [ContextMenu("Покажи в консоли хранимые ресупрсы")]

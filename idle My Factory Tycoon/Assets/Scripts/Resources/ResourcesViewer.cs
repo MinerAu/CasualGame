@@ -45,6 +45,7 @@ public class ResourcesViewer : MonoBehaviour
     {
         _resourcesShop.ResourcesAmountChanged += ShowResourceAmount;
         _warehouse.ResourcesAmountChanged += ShowResourceAmount;
+        _wallet.CoinsAmountChanged += ShowCoinsAmount;
         //_spawn.CoinsAmountChanged += ShowCoinsAmount;
     }
 
@@ -62,6 +63,7 @@ public class ResourcesViewer : MonoBehaviour
     {
         _resourcesShop.ResourcesAmountChanged -= ShowResourceAmount;
         _warehouse.ResourcesAmountChanged -= ShowResourceAmount;
+        _wallet.CoinsAmountChanged += ShowCoinsAmount;
         //_spawn.CoinsAmountChanged -= ShowCoinsAmount;
     }
 

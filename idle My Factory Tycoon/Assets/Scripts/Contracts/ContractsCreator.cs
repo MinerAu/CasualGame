@@ -38,8 +38,8 @@ public class ContractsCreator : MonoBehaviour
 
     public Contract CreateRandomContract()
     {
-        int minAmount = 5;
-        int maxAmount = 30;
+        int minAmount = 3;
+        int maxAmount = 7;
 
         string customer = Randomizer.GetObjectFromArray(_customers).ToString();
         string item = Randomizer.GetObjectFromArray(_products.Select(x => x._russianName).ToArray()).ToString();
