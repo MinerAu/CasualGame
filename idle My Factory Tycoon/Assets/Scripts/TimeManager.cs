@@ -4,20 +4,22 @@ using UnityEngine;
 public class TimeManager : MonoBehaviour {
 
     [SerializeField] private ProductionGoods productionGoods;
+    [SerializeField] private TaxCalculator taxCalculator;
 
     public float timeScale = 1f; // скорость течения времени
-    public float weekDuration = 40f; // Длительность одной игровой недели
+    public float weekDuration = 10f; // Длительность одной игровой недели
 
     public float currentTime = 0;
     public int currentWeek = 0;
 
     public TextMeshProUGUI weekText; // Ссылка на UI-элемент где будет отображаться текущая неделя
 
-    private void Start() {
-        InvokeRepeating("UpdateWeek", 0f, weekDuration / timeScale);
+    private void Start()
+    {
+        InvokeRepeating("MoveToNextWeek", 0f, weekDuration / timeScale);
     }
 
-    private void Update() {
+    /*private void Update() {
         if (productionGoods.isValue) {
             currentTime += Time.deltaTime * timeScale;
 
@@ -27,6 +29,19 @@ public class TimeManager : MonoBehaviour {
                 OnWeekPassed(currentWeek);
                 UpdateWeekUI();
             }
+        }
+    }*/
+
+    private void MoveToNextWeek()
+    {
+        Debug.Log("Next week...");
+
+        currentWeek++;
+        UpdateWeekUI();
+
+        if (taxCalculator != null)
+        {
+            taxCalculator.WithholdTax();
         }
     }
 

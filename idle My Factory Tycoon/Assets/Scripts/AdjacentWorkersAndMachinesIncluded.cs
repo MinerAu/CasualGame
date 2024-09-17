@@ -21,6 +21,37 @@ public class AdjacentWorkersAndMachinesIncluded : MonoBehaviour
         Debug.Log("Свободных рабочих не найдено!");
         return false;
     }
+
+    public int GetActiveWorkersCount()
+    {
+        int result = 0;
+
+        foreach (Worker worker in _workers)
+        {
+            if (worker.IsActive)
+            {
+                result++;
+            }
+        }
+
+        return result;
+    }
+
+    public int GetActiveMachinesCount()
+    {
+        int result = 0;
+
+        foreach (Worker worker in _workers)
+        {
+            if (worker.HasMachine)
+            {
+                result++;
+            }
+        }
+
+        return result;
+    }
+    
     /*[SerializeField] private Spawn spawn;
 
     [NonSerialized] public int activeWorkers = 0;

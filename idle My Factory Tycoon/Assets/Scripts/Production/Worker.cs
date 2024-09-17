@@ -11,10 +11,9 @@ public class Worker : MonoBehaviour
 
     private bool _isWorking = false;
     private Animator _animator;
-
-    private bool IsActive => gameObject.activeSelf;
-    private bool HasMachine => _machine != null && _machine.gameObject.activeSelf;
     
+    public bool HasMachine => _machine != null && _machine.gameObject.activeSelf;
+    public bool IsActive => gameObject.activeSelf;
     public bool IsReadyForWork => IsActive && HasMachine && _isWorking == false;
 
     private void Start()

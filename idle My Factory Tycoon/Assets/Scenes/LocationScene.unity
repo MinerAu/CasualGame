@@ -39780,6 +39780,7 @@ GameObject:
   - component: {fileID: 1152315004}
   - component: {fileID: 1152315003}
   - component: {fileID: 1152315005}
+  - component: {fileID: 1152315006}
   m_Layer: 0
   m_Name: RunningTIme
   m_TagString: Untagged
@@ -39800,6 +39801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   productionGoods: {fileID: 2028639244}
+  taxCalculator: {fileID: 1152315006}
   timeScale: 1
   weekDuration: 40
   currentTime: 0
@@ -39832,6 +39834,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd1d3a54e80d4254081fbf58f44e3ebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1152315006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152315002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb3e247f81e80b4a92eaaba25e7f7a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wallet: {fileID: 230500297}
+  _reestr: {fileID: 2035465163}
 --- !u!1 &1154698201
 GameObject:
   m_ObjectHideFlags: 0
