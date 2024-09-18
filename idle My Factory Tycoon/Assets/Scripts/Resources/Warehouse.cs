@@ -9,7 +9,9 @@ public class Warehouse : MonoBehaviour
 {
     public List<Item> resources;
     public List<Product> products;
+
     public event UnityAction<string, int> ResourcesAmountChanged;
+    public event UnityAction<string, int> ProductsAmountChanged;
 
     public void AddResource(string resourceName, int resourceAmount)
     {
@@ -66,11 +68,13 @@ public class Warehouse : MonoBehaviour
             else
             {
                 products[index]._amount += productAmount;
+                ProductsAmountChanged?.Invoke(productName, productAmount);
             }
         }
         else
         {
             products[index]._amount += productAmount;
+            ProductsAmountChanged?.Invoke(productName, productAmount);
         }
     }
 
@@ -89,11 +93,13 @@ public class Warehouse : MonoBehaviour
             else
             {
                 products[index]._amount -= productAmount;
+                ProductsAmountChanged?.Invoke(productName, productAmount);
             }
         }
         else
         {
             products[index]._amount -= productAmount;
+            ProductsAmountChanged?.Invoke(productName, productAmount);
         }
     }
 
