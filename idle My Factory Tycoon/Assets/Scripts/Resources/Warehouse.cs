@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class Warehouse : MonoBehaviour
 {
+    [SerializeField] private Messenger _messenger;
+
     public List<Item> resources;
     public List<Product> products;
 
@@ -68,13 +70,21 @@ public class Warehouse : MonoBehaviour
             else
             {
                 products[index]._amount += productAmount;
-                ProductsAmountChanged?.Invoke(productName, productAmount);
+                ProductsAmountChanged?.Invoke(productName, products[index]._amount);
+                if (_messenger != null)
+                {
+                    _messenger.AddMessage($"Произведено: {products[index]._russianName}", Color.blue);
+                }
             }
         }
         else
         {
             products[index]._amount += productAmount;
-            ProductsAmountChanged?.Invoke(productName, productAmount);
+            ProductsAmountChanged?.Invoke(productName, products[index]._amount);
+            if (_messenger != null)
+            {
+                _messenger.AddMessage($"Произведено: {products[index]._russianName}", Color.blue);
+            }
         }
     }
 
@@ -93,13 +103,13 @@ public class Warehouse : MonoBehaviour
             else
             {
                 products[index]._amount -= productAmount;
-                ProductsAmountChanged?.Invoke(productName, productAmount);
+                ProductsAmountChanged?.Invoke(productName, products[index]._amount);
             }
         }
         else
         {
             products[index]._amount -= productAmount;
-            ProductsAmountChanged?.Invoke(productName, productAmount);
+            ProductsAmountChanged?.Invoke(productName, products[index]._amount);
         }
     }
 

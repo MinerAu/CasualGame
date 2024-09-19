@@ -9,6 +9,7 @@ public class TaxCalculator : MonoBehaviour
 
     [SerializeField] private Wallet _wallet;
     [SerializeField] private AdjacentWorkersAndMachinesIncluded _reestr;
+    [SerializeField] private Messenger _messenger;
 
     public void WithholdTax()
     {
@@ -24,6 +25,7 @@ public class TaxCalculator : MonoBehaviour
             _wallet.SpendCoins(_wallet.GetCoins());
         }
 
-        Debug.Log($"Tax={taxValue}");
+        _messenger.AddMessage($"Налог: {taxValue}$", Color.red);
+        //Debug.Log($"Tax={taxValue}");
     }
 }

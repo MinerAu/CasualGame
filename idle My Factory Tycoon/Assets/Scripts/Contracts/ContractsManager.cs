@@ -6,6 +6,7 @@ public class ContractsManager : MonoBehaviour
 {
     [SerializeField] private Warehouse _warehouse;
     [SerializeField] private Wallet _wallet;
+    [SerializeField] private Messenger _messenger;
 
     private int _maximumContracts = 3;
     private List<Contract> _contracts = new List<Contract>();
@@ -54,11 +55,13 @@ public class ContractsManager : MonoBehaviour
 
                 if (_warehouse.GetProductAmount(requiredProduct) >= requiredAmount)
                 {
-                    Debug.Log("Контракт исполнен!!!");
-
+                    //Debug.Log("Контракт исполнен!!!");
                     _warehouse.RemoveProduct(requiredProduct, requiredAmount);
                     _wallet.AddCoins(contract.Award);
                     _contracts.RemoveAt(contractIndex);
+
+                    _messenger.AddMessage("Контракт исполнен!", Color.green);
+
                     continue;
                 }
 
