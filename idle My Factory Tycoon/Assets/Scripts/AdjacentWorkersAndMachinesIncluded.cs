@@ -4,6 +4,7 @@ using UnityEngine;
 public class AdjacentWorkersAndMachinesIncluded : MonoBehaviour
 {
     [SerializeField] private Worker[] _workers;
+    [SerializeField] private Messenger _messenger;
     
     public bool TryGetFreeWorker(out Worker freeWorker)
     {
@@ -18,7 +19,11 @@ public class AdjacentWorkersAndMachinesIncluded : MonoBehaviour
             }
         }
 
-        Debug.Log("Свободных рабочих не найдено!");
+        if (_messenger != null)
+        {
+            _messenger.AddMessage("Нет свободных рабочих!", Color.yellow);
+        }
+
         return false;
     }
 

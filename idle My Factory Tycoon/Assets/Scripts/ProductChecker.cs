@@ -11,6 +11,7 @@ public class ProductChecker : MonoBehaviour
 {
     [SerializeField] private Warehouse _warehouse;
     [SerializeField] private ResourcesShop _shop;
+    [SerializeField] private Messenger _messenger;
 
     public bool IsProductAvailbale(Product product)
     {
@@ -24,7 +25,12 @@ public class ProductChecker : MonoBehaviour
 
             if (!enoughResources)
             {
-                Debug.Log($"Недостаточно ресурса [{pair.Key}]!");
+                /*Debug.Log($"Недостаточно ресурса [{pair.Key}]!");*/
+                if (_messenger != null)
+                {
+                    _messenger.AddMessage($"Не хватает ресурсов на [{product._russianName}]", Color.yellow);
+                }
+
                 return enoughResources;
             }
         }
