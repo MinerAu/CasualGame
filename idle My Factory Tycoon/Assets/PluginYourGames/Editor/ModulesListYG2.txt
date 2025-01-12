@@ -1,0 +1,5 @@
+AutoTranslateLangs v1.001
+Flags v1.001
+Fullscreen v1.0
+InterstitialAdv v1.0
+Localization v1.0
