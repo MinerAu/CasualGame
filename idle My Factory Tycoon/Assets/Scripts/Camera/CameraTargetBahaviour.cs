@@ -19,12 +19,6 @@ public class CameraTargetBehaviour : MonoBehaviour
     [SerializeField] private float _rightBorder = 410;         //правая
     //---------------------------------------------------------------------------------------------
 
-    //Masalkin632(2024-07-05): модификатор для скорости для перемещения на сенсорных экранах
-    [SerializeField] private float _touchSpeedModifier = 0.1f;
-
-    //Masalkin632(2024-07-05): переменная, в которой хранится информация о прикосновении
-    private Touch _touch;
-
     private void Start()
     {
         //устанавливаем вектор вперёд
@@ -41,9 +35,6 @@ public class CameraTargetBehaviour : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //Masalkin632(2024-07-03): движение камеры при помощи тач на мобильных устройствах
-        TouchMove();
-
         if (Input.anyKey)
         {
             KeyboardMove();
@@ -51,7 +42,6 @@ public class CameraTargetBehaviour : MonoBehaviour
         }
 
         MouseMove();
-
     }
 
     private void KeyboardMove()
@@ -96,25 +86,5 @@ public class CameraTargetBehaviour : MonoBehaviour
             transform.position += downMovement;
         }
         //---------------------------------------------------------------------------------------------------------------------------------------
-    }
-
-    private void TouchMove()
-    {
-        if (Input.touchCount == 1)
-        {
-            _touch = Input.GetTouch(0);
-
-            if (_touch.phase == TouchPhase.Moved)
-            {
-                Vector3 verticalMovement = -_forward * _moveSpeed * Time.deltaTime * _touchSpeedModifier * _touch.deltaPosition.y;
-                Vector3 horizontalMovement = -_right * _moveSpeed * Time.deltaTime * _touchSpeedModifier * _touch.deltaPosition.x;
-
-                Vector3 newPosition = transform.position + verticalMovement + horizontalMovement;
-                newPosition =  new Vector3(Mathf.Clamp(newPosition.x, _leftBorder, _rightBorder),
-                                           newPosition.y,
-                                           Mathf.Clamp(newPosition.z, _lowerBorder, _upperBorder));
-                transform.position = newPosition;
-            }
-        }
     }
 }
