@@ -13,8 +13,8 @@ public class CameraTargetBehaviour : MonoBehaviour
     private Vector3 _right;                         //вектор, направленный в правую сторону экрана
 
     //Masalkin632(2024-06-02): границы, ограничивыввающие перемещение объекта----------------------
-    [SerializeField] private float _upperBorder = -120;         //верхн€€
-    [SerializeField] private float _lowerBorder = 180;         //нижн€€
+    [SerializeField] private float _upperBorder = 120;         //верхн€€
+    [SerializeField] private float _lowerBorder = -180;         //нижн€€
     [SerializeField] private float _leftBorder = 70;          //лева€
     [SerializeField] private float _rightBorder = 410;         //права€
     //---------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ public class CameraTargetBehaviour : MonoBehaviour
         if (Input.anyKey)
         {
             KeyboardMove();
-            return;
+            //return;
         }
 
         MouseMove();
