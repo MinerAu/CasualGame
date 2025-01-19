@@ -18,7 +18,7 @@ public class ProductionGoods : MonoBehaviour
     [SerializeField] private TimeManager secondsElapsed;
     [SerializeField] private AdjacentWorkersAndMachinesIncluded check;
     [SerializeField] private StartProduction startProduction;
-    [SerializeField] private Wallet wallet;
+    [SerializeField] private Wallet2 wallet;
     [SerializeField] ContractsManager contract;
 
     private ProductChecker productChecker;

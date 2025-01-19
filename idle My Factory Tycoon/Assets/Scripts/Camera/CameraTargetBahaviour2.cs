@@ -4,7 +4,7 @@ using UnityEngine;
 
 //Masalkin632(2024-05-16): осуществляется перемещение объекта взависимости от нажатых клавиш и положения указателя мыши на экране
 
-public class CameraTargetBehaviour : MonoBehaviour
+public class CameraTargetBehaviour2 : MonoBehaviour
 {
     [SerializeField]                                //можем изменить скорость перемещения камеры в инспекторе
     private float _moveSpeed = 2.0f;                //скорость перемещения камеры
@@ -13,8 +13,8 @@ public class CameraTargetBehaviour : MonoBehaviour
     private Vector3 _right;                         //вектор, направленный в правую сторону экрана
 
     //Masalkin632(2024-06-02): границы, ограничивыввающие перемещение объекта----------------------
-    [SerializeField] private float _upperBorder = -120;         //верхняя
-    [SerializeField] private float _lowerBorder = 180;         //нижняя
+    [SerializeField] private float _upperBorder = 180;         //верхняя
+    [SerializeField] private float _lowerBorder = -120;         //нижняя
     [SerializeField] private float _leftBorder = 70;          //левая
     [SerializeField] private float _rightBorder = 410;         //правая
     //---------------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ public class CameraTargetBehaviour : MonoBehaviour
             return;
         }
 
-        MouseMove();
+        //MouseMove();
     }
 
     private void KeyboardMove()
@@ -49,11 +49,30 @@ public class CameraTargetBehaviour : MonoBehaviour
         Vector3 horizontalMovement = _right * _moveSpeed * Time.deltaTime * Input.GetAxis("Horizontal");        //в этой строке сразу определяем нажата ли клавиша для поперечного перемещения и преобразуем её в смещение
         Vector3 verticalMovement = _forward * _moveSpeed * Time.deltaTime * Input.GetAxis("Vertical");          //в этой строке сразу определяем нажата ли клавиша для продольного перемещения и преобразуем её в смещение
 
-        transform.position += horizontalMovement + verticalMovement;                                            //определяем новое положение
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, _leftBorder, _rightBorder),
-                                         transform.position.y + horizontalMovement.y + verticalMovement.y,
-                                         Mathf.Clamp(transform.position.z, _lowerBorder, _upperBorder));
+        Vector3 newPosition = transform.position + horizontalMovement + verticalMovement;                                          //определяем новое положение
+        /*Vector3 correctedPosition = new Vector3(Mathf.Clamp(newPosition.x, _leftBorder, _rightBorder),
+                                                newPosition.y,
+                                                Mathf.Clamp(newPosition.z, _lowerBorder, _upperBorder));*/
 
+        if (newPosition.x < _leftBorder)
+        {
+            newPosition.x = _leftBorder;
+        }
+        if (newPosition.x > _rightBorder)
+        {
+            newPosition.x = _rightBorder;
+        }
+        if (newPosition.z < _lowerBorder)
+        {
+            newPosition.z = _lowerBorder;
+        }
+        if (newPosition.z > _upperBorder)
+        {
+            newPosition.z = _upperBorder;
+        }
+
+
+        transform.position = newPosition;
     }
 
     private void MouseMove()

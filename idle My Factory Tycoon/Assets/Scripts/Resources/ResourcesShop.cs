@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class ResourcesShop : MonoBehaviour
 {
-    [SerializeField] private Wallet _wallet;
+    [SerializeField] private Wallet2 _wallet;
     [SerializeField] private Warehouse _warehouse;
 
     public event UnityAction<string, int> ResourcesAmountChanged;

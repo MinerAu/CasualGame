@@ -6625,7 +6625,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9447935ca27fed54c9c28112b77d5908, type: 2}
+  - {fileID: 2100000, guid: 8a815d9add23b5d49a2df145094cd455, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8904,7 +8904,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 230500296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f704e90fdc4e67449c1c01f287a7f53, type: 3}
+  m_Script: {fileID: 11500000, guid: e3c03e2eddfeefa49974e56ca3efe56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   coins: 3000
@@ -50720,9 +50720,10 @@ GameObject:
   - component: {fileID: 1571596647}
   - component: {fileID: 1571596646}
   - component: {fileID: 1571596645}
-  - component: {fileID: 1571596649}
   - component: {fileID: 1571596651}
   - component: {fileID: 1571596650}
+  - component: {fileID: 1571596652}
+  - component: {fileID: 1571596649}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -50812,15 +50813,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571596644}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 242c73aa3360ce7469a9bb5a0847d157, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d780fcb881c46c4da9009d05937f675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuList:
-  - {fileID: 1076064644}
-  - {fileID: 1722624162}
-  - {fileID: 1794375599}
+  _menuList: []
   _minOrthographicSize: 7
   _maxOrthographicSize: 25
 --- !u!114 &1571596650
@@ -50936,6 +50934,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1571596652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571596644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7324874915e661438354e90a446f355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minOrthographicSize: 7
+  _maxOrthographicSize: 25
+  _touchZoomSpeed: 0.1
 --- !u!33 &1577802397
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -64317,6 +64330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1973627481}
   - component: {fileID: 1973627480}
+  - component: {fileID: 1973627482}
   m_Layer: 0
   m_Name: CameraTarget
   m_TagString: Untagged
@@ -64331,16 +64345,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973627479}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9236b1a282128040b9208e6b1a5df6c, type: 3}
+  m_Script: {fileID: 11500000, guid: f3aaa744dcd47bb49b857763a37b41b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 30
-  _upperBorder: 150
-  _lowerBorder: -80
-  _leftBorder: 100
-  _rightBorder: 250
+  _moveSpeed: 5
+  _upperBorder: 180
+  _lowerBorder: -120
+  _leftBorder: 70
+  _rightBorder: 410
 --- !u!4 &1973627481
 Transform:
   m_ObjectHideFlags: 0
@@ -64357,6 +64371,24 @@ Transform:
   - {fileID: 171518895}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1973627482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973627479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e8ec65d66f39394d8b79f78f4f4146f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 5
+  _upperBorder: 180
+  _lowerBorder: -120
+  _leftBorder: 70
+  _rightBorder: 410
+  _touchSpeedModifier: 0.1
 --- !u!1001 &1977400307
 PrefabInstance:
   m_ObjectHideFlags: 0

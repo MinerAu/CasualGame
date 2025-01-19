@@ -16,7 +16,7 @@ public class Truck : MonoBehaviour
 
     private Animator anim;
 
-    public Wallet wallet;
+    public Wallet2 wallet;
 
     private void Start()
     {

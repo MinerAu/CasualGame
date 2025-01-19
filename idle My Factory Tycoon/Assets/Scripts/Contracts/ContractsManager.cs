@@ -5,7 +5,7 @@ using UnityEngine;
 public class ContractsManager : MonoBehaviour
 {
     [SerializeField] private Warehouse _warehouse;
-    [SerializeField] private Wallet _wallet;
+    [SerializeField] private Wallet2 _wallet;
     [SerializeField] private Messenger _messenger;
 
     private int _maximumContracts = 3;

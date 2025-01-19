@@ -7,7 +7,7 @@ public class TaxCalculator : MonoBehaviour
     private const int WorkerTax = 40;
     private const int MachineTax = 20;
 
-    [SerializeField] private Wallet _wallet;
+    [SerializeField] private Wallet2 _wallet;
     [SerializeField] private AdjacentWorkersAndMachinesIncluded _reestr;
     [SerializeField] private Messenger _messenger;
 

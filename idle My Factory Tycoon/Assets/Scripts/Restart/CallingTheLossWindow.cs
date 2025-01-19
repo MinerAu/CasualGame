@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CallingTheLossWindow : MonoBehaviour
 {
-    [SerializeField] private Wallet _wallet;
+    [SerializeField] private Wallet2 _wallet;
     [SerializeField] private GameObject _loss;
     [SerializeField] private List<GameObject> _menus;
     private IncludesLossWindow _includesLossWindow;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tax : MonoBehaviour
 {
-    [SerializeField] private Wallet wal;//кашелек
+    [SerializeField] private Wallet2 wal;//кашелек
 
     private int employee = 0;//кол-во сотрудников
     [SerializeField] private int machineCost = 30;//цена аренды транспорта

@@ -4,7 +4,7 @@ using UnityEngine;
 
 //Masalkin632(2024-05-16): осуществляется привязка камеры к объекту с названием [CameraTarget]
 
-public class MainCameraBehaviour : MonoBehaviour
+public class MainCameraBehaviour2 : MonoBehaviour
 {
     private readonly Vector3 _cameraOffsetRelativeTarget = new Vector3(-25f, 60f, -25f);            //положение камеры относительно объекта [CameraTarget]
     private readonly float _scrollSpeed = 10.0f;                                                    //скорость скрола (изменения масштаба)

@@ -1,8 +1,9 @@
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Events;
 using YG;
 
-public class Wallet : MonoBehaviour
+public class Wallet2 : MonoBehaviour
 {
     [SerializeField] private int coins = 0;
 
@@ -34,4 +35,9 @@ public class Wallet : MonoBehaviour
     {
         return coins;
     }//получить текущее значение монет в кошельке
+
+    public void SetCoins(int amount)
+    {
+        coins = amount;
+    }
 }

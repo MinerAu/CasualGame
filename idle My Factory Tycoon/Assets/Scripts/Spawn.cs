@@ -8,7 +8,7 @@ public class Spawn : MonoBehaviour {
 
     public GameObject[] machineWorker;
     [SerializeField] private GameObject[] button;
-    [SerializeField] private Wallet wallet;
+    [SerializeField] private Wallet2 wallet;
 
     //Masalkin632(2024-08-18): событие для отображения изменившегося количества монет
     public event UnityAction<int> CoinsAmountChanged;

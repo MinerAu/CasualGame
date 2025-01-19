@@ -21,7 +21,7 @@ public class ResourcesViewer : MonoBehaviour
     [SerializeField] private ResourcesShop _resourcesShop;
     [SerializeField] private Spawn _spawn;
     [SerializeField] private Warehouse _warehouse;
-    [SerializeField] private Wallet _wallet;
+    [SerializeField] private Wallet2 _wallet;
 
     [SerializeField] private TextMeshProUGUI _coinsLeft;
     [SerializeField] private TextMeshProUGUI _boardsLeft;
