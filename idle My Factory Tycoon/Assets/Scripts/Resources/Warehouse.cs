@@ -45,6 +45,21 @@ public class Warehouse : MonoBehaviour
         }
     }
 
+    public void SetResourceAmount(string resourceName, int resourceAmount)
+    {
+        int index = resources.FindIndex(r => r.nameItem == resourceName);
+
+        if (index == -1)
+        {
+            Debug.Log("unknown resource!!!");
+        }
+        else
+        {
+            resources[index].quantityItem = resourceAmount;
+            ResourcesAmountChanged?.Invoke(resources[index].nameItem, resources[index].quantityItem);
+        }
+    }
+
     public Item GetResource(string name) {
         Item result = null;
         foreach (Item item in resources) {
