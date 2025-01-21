@@ -62111,7 +62111,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _saveInterval: 10
   _coins: 0
+  _boards: 0
+  _boxesOfNails: 0
+  _boxesOfScrews: 0
+  _electricalCircuits: 0
+  _metalAlloys: 0
+  _metalSheets: 0
+  _plastics: 0
+  _rubbers: 0
   _wallet: {fileID: 230500297}
+  _warehouse: {fileID: 894700102}
 --- !u!4 &1901010760
 Transform:
   m_ObjectHideFlags: 0

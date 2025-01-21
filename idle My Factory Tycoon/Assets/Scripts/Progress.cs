@@ -11,6 +11,7 @@ public class Progress : MonoBehaviour
     [SerializeField] private int _saveInterval = 10;
 
     [SerializeField] private int _coins;
+
     [SerializeField] private int _boards;
     [SerializeField] private int _boxesOfNails;
     [SerializeField] private int _boxesOfScrews;
@@ -19,6 +20,17 @@ public class Progress : MonoBehaviour
     [SerializeField] private int _metalSheets;
     [SerializeField] private int _plastics;
     [SerializeField] private int _rubbers;
+
+    [SerializeField] private int _bathes;
+    [SerializeField] private int _chairs;
+    [SerializeField] private int _doors;
+    [SerializeField] private int _engines;
+    [SerializeField] private int _hammers;
+    [SerializeField] private int _saws;
+    [SerializeField] private int _screwdrivers;
+    [SerializeField] private int _smartphones;
+    [SerializeField] private int _tables;
+    [SerializeField] private int _wheels;
     
 
     [SerializeField] private Wallet2 _wallet;
@@ -42,6 +54,7 @@ public class Progress : MonoBehaviour
     {
         _wallet.CoinsAmountChanged += ChangeCoinsAmount;
         _warehouse.ResourcesAmountChanged += ResourceAmountChanged;
+        _warehouse.ProductsAmountChanged += ProductAmountChanged;
 
         _saveProccess = StartCoroutine(SaveProccess());
     }
@@ -49,6 +62,8 @@ public class Progress : MonoBehaviour
     private void OnDisable()
     {
         _wallet.CoinsAmountChanged -= ChangeCoinsAmount;
+        _warehouse.ResourcesAmountChanged -= ResourceAmountChanged;
+        _warehouse.ProductsAmountChanged -= ProductAmountChanged;
 
         StopCoroutine(_saveProccess);
     }
@@ -112,6 +127,87 @@ public class Progress : MonoBehaviour
         {
             _electricalCircuits = PlayerPrefs.GetInt(nameof(_electricalCircuits));
             _warehouse.SetResourceAmount("Electrical circuit", _electricalCircuits);
+        }
+
+        /*[SerializeField] private int _bathes;
+        [SerializeField] private int _chairs;
+        [SerializeField] private int _doors;
+        [SerializeField] private int _engines;
+        [SerializeField] private int _hammers;
+        [SerializeField] private int _saws;
+        [SerializeField] private int _screwdrivers;
+        [SerializeField] private int _smartphones;
+        [SerializeField] private int _tables;
+        [SerializeField] private int _wheels;*/
+
+        if (PlayerPrefs.HasKey(nameof(_bathes)))
+        {
+            _bathes = PlayerPrefs.GetInt(nameof(_bathes));
+            _warehouse.SetProductAmount("Bath", _bathes);
+            _warehouse.SetProductAmount("Ванная", _bathes);
+        }
+
+        if (PlayerPrefs.HasKey(nameof(_chairs)))
+        {
+            _chairs = PlayerPrefs.GetInt(nameof(_chairs));
+            _warehouse.SetProductAmount("Chair", _chairs);
+            _warehouse.SetProductAmount("Стул", _chairs);
+        }
+
+        if (PlayerPrefs.HasKey(nameof(_doors)))
+        {
+            _doors = PlayerPrefs.GetInt(nameof(_doors));
+            _warehouse.SetProductAmount("Door", _doors);
+            _warehouse.SetProductAmount("Дверь", _doors);
+        }
+
+        if (PlayerPrefs.HasKey(nameof(_engines)))
+        {
+            _engines = PlayerPrefs.GetInt(nameof(_engines));
+            _warehouse.SetProductAmount("Engine", _engines);
+            _warehouse.SetProductAmount("Двигатель", _engines);
+        }
+
+        if (PlayerPrefs.HasKey(nameof(_hammers)))
+        {
+            _hammers = PlayerPrefs.GetInt(nameof(_hammers));
+            _warehouse.SetProductAmount("Hammer", _hammers);
+            _warehouse.SetProductAmount("Молоток", _hammers);
+        }
+
+        if (PlayerPrefs.HasKey(nameof(_saws)))
+        {
+            _saws = PlayerPrefs.GetInt(nameof(_saws));
+            _warehouse.SetProductAmount("Saw", _saws);
+            _warehouse.SetProductAmount("Пила", _saws);
+        }
+
+        if (PlayerPrefs.HasKey(nameof(_screwdrivers)))
+        {
+            _screwdrivers = PlayerPrefs.GetInt(nameof(_screwdrivers));
+            _warehouse.SetProductAmount("Screwdriver", _screwdrivers);
+            _warehouse.SetProductAmount("Шуруповёрт", _screwdrivers);
+        }
+
+        if (PlayerPrefs.HasKey(nameof(_smartphones)))
+        {
+            _smartphones = PlayerPrefs.GetInt(nameof(_smartphones));
+            _warehouse.SetProductAmount("Smartphone", _smartphones);
+            _warehouse.SetProductAmount("Смартфон", _smartphones);
+        }
+
+        if (PlayerPrefs.HasKey(nameof(_tables)))
+        {
+            _tables = PlayerPrefs.GetInt(nameof(_tables));
+            _warehouse.SetProductAmount("Table", _tables);
+            _warehouse.SetProductAmount("Стол", _tables);
+        }
+
+        if (PlayerPrefs.HasKey(nameof(_wheels)))
+        {
+            _wheels = PlayerPrefs.GetInt(nameof(_wheels));
+            _warehouse.SetProductAmount("Wheel", _wheels);
+            _warehouse.SetProductAmount("Колесо", _wheels);
         }
     }
 
@@ -210,6 +306,122 @@ public class Progress : MonoBehaviour
     {
         _rubbers = amount;
         PlayerPrefs.SetInt(nameof(_rubbers), _rubbers);
+    }
+
+    private void ProductAmountChanged(string productName, int productAmount)
+    {
+        switch (productName)
+        {
+            case "Chair":
+            case "Стул":
+                ChangeChairs(productAmount);
+                break;
+
+            case "Door":
+            case "Дверь":
+                ChangeDoors(productAmount);
+                break;
+
+            case "Table":
+            case "Стол":
+                ChangeTables(productAmount);
+                break;
+
+            case "Hammer":
+            case "Молоток":
+                ChangeHammers(productAmount);
+                break;
+
+            case "Saw":
+            case "Пила":
+                ChangeSaws(productAmount);
+                break;
+
+            case "Wheel":
+            case "Колесо":
+                ChangeWheels(productAmount);
+                break;
+
+            case "Engine":
+            case "Двигатель":
+                ChangeWheels(productAmount);
+                break;
+
+            case "Bath":
+            case "Ванная":
+                ChangeBathes(productAmount);
+                break;
+
+            case "Screwdriver":
+            case "Шуруповёрт":
+                ChangeScrewdrivers(productAmount);
+                break;
+
+            case "Smartphone":
+            case "Смартфон":
+                ChangeSmartphones(productAmount);
+                break;
+        }
+    }
+
+    private void ChangeBathes(int amount)
+    {
+        _bathes = amount;
+        PlayerPrefs.SetInt(nameof(_bathes), _bathes);
+    }
+
+    private void ChangeChairs(int amount)
+    {
+        _chairs = amount;
+        PlayerPrefs.SetInt(nameof(_chairs), _chairs);
+    }
+
+    private void ChangeDoors(int amount)
+    {
+        _doors = amount;
+        PlayerPrefs.SetInt(nameof(_doors), _doors);
+    }
+
+    private void ChangeEngines(int amount)
+    {
+        _engines = amount;
+        PlayerPrefs.SetInt(nameof(_engines), _engines);
+    }
+
+    private void ChangeHammers(int amount)
+    {
+        _hammers = amount;
+        PlayerPrefs.SetInt(nameof(_hammers), _hammers);
+    }
+
+    private void ChangeSaws(int amount)
+    {
+        _saws = amount;
+        PlayerPrefs.SetInt(nameof(_saws), _saws);
+    }
+
+    private void ChangeScrewdrivers(int amount)
+    {
+        _screwdrivers = amount;
+        PlayerPrefs.SetInt(nameof(_screwdrivers), _screwdrivers);
+    }
+
+    private void ChangeSmartphones(int amount)
+    {
+        _smartphones = amount;
+        PlayerPrefs.SetInt(nameof(_smartphones), _smartphones);
+    }
+
+    private void ChangeTables(int amount)
+    {
+        _tables = amount;
+        PlayerPrefs.SetInt(nameof(_tables), _tables);
+    }
+
+    private void ChangeWheels(int amount)
+    {
+        _wheels = amount;
+        PlayerPrefs.SetInt(nameof(_wheels), _wheels);
     }
 
     private IEnumerator SaveProccess()

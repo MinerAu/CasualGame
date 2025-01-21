@@ -151,6 +151,21 @@ public class Warehouse : MonoBehaviour
         }
     }
 
+    public void SetProductAmount(string productName, int productAmount)
+    {
+        int index = products.FindIndex(p => p._name == productName);
+
+        if (index == -1)
+        {
+            Debug.Log("unknown product!!!");
+        }
+        else
+        {
+            products[index]._amount = productAmount;
+            ProductsAmountChanged?.Invoke(products[index]._name, products[index]._amount);
+        }
+    }
+
     [ContextMenu("Покажи в консоли хранимые ресупрсы")]
     private void ShowResourcesInConsole() {
         foreach (Item item in resources) {
