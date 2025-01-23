@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Progress : MonoBehaviour
 {
@@ -31,7 +32,11 @@ public class Progress : MonoBehaviour
     [SerializeField] private int _smartphones;
     [SerializeField] private int _tables;
     [SerializeField] private int _wheels;
-    
+
+    [SerializeField] private List<Worker> _workers;
+    [SerializeField] private List<GameObject> _workerButtons;
+    [SerializeField] private List<Machine> _machines;
+    [SerializeField] private List<GameObject> _machineButtons;
 
     [SerializeField] private Wallet2 _wallet;
     [SerializeField] private Warehouse _warehouse;
@@ -70,6 +75,26 @@ public class Progress : MonoBehaviour
 
     private void Save()
     {
+        int index = 0;
+        while (index < _workers.Count)
+        {
+            string workerName = $"_worker{index + 1}";
+
+            PlayerPrefs.SetInt(workerName, _workers[index].gameObject.activeSelf ? 1 : 0);
+
+            ++index;
+        }
+
+        index = 0;
+        while (index < _machines.Count)
+        {
+            string machineName = $"_machine{index + 1}";
+
+            PlayerPrefs.SetInt(machineName, _machines[index].gameObject.activeSelf ? 1 : 0);
+
+            ++index;
+        }
+
         PlayerPrefs.Save();
     }
 
@@ -208,6 +233,33 @@ public class Progress : MonoBehaviour
             _wheels = PlayerPrefs.GetInt(nameof(_wheels));
             _warehouse.SetProductAmount("Wheel", _wheels);
             _warehouse.SetProductAmount("Колесо", _wheels);
+        }
+
+        int index = 0;
+        while (index < _workers.Count)
+        {
+            string workerName = $"_worker{index + 1}";
+
+            if (PlayerPrefs.HasKey(workerName))
+            {
+                _workers[index].gameObject.SetActive(PlayerPrefs.GetInt(workerName) >= 1 ? true : false);
+                _workerButtons[index].gameObject.SetActive(PlayerPrefs.GetInt(workerName) >= 1 ? false : true);
+            }
+            ++index;
+        }
+
+        index = 0;
+        while (index < _machines.Count)
+        {
+            string machineName = $"_machine{index + 1}";
+
+            if (PlayerPrefs.HasKey(machineName))
+            {
+                _machines[index].gameObject.SetActive(PlayerPrefs.GetInt(machineName) >= 1 ? true : false);
+                _machineButtons[index].gameObject.SetActive(PlayerPrefs.GetInt(machineName) >= 1 ? false : true);
+            }
+
+            ++index;
         }
     }
 
