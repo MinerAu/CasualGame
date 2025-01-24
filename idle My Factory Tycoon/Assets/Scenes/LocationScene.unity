@@ -62215,6 +62215,7 @@ MonoBehaviour:
   - {fileID: 872036411}
   _wallet: {fileID: 230500297}
   _warehouse: {fileID: 894700102}
+  _contractsManager: {fileID: 763515264}
 --- !u!4 &1901010760
 Transform:
   m_ObjectHideFlags: 0

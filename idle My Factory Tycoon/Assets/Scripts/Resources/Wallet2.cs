@@ -40,4 +40,10 @@ public class Wallet2 : MonoBehaviour
     {
         coins = amount;
     }
+
+    [ContextMenu("Добавить 3000$")]
+    private void Add3000Coins()
+    {
+        AddCoins(3000);
+    }
 }

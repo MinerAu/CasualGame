@@ -40,6 +40,7 @@ public class Progress : MonoBehaviour
 
     [SerializeField] private Wallet2 _wallet;
     [SerializeField] private Warehouse _warehouse;
+    [SerializeField] private ContractsManager _contractsManager;
 
     private void Start()
     {
@@ -95,8 +96,33 @@ public class Progress : MonoBehaviour
             ++index;
         }
 
+        index = 0;
+        PlayerPrefs.SetInt("_contractsCount", _contractsManager.GetContractsCount());
+        while (index < _contractsManager.GetContractsCount())
+        {
+            PlayerPrefs.SetInt($"_contract{index + 1}Id", _contractsManager.GetContractId(index));
+            PlayerPrefs.SetString($"_contract{index + 1}Customer", _contractsManager.GetContractCustomer(index));
+            PlayerPrefs.SetString($"_contract{index + 1}Item", _contractsManager.GetContractItem(index));
+            PlayerPrefs.SetInt($"_contract{index + 1}Amount", _contractsManager.GetContractAmount(index));
+            PlayerPrefs.SetInt($"_contract{index + 1}Duration", _contractsManager.GetContractDuration(index));
+            PlayerPrefs.SetInt($"_contract{index + 1}Award", _contractsManager.GetContractAward(index));
+            PlayerPrefs.SetFloat($"_contract{index + 1}AcceptedTime", _contractsManager.GetContractAcceptedTime(index));
+
+            Debug.Log(_contractsManager.GetContractAsString(index));
+
+            ++index;
+        }
+
         PlayerPrefs.Save();
     }
+
+    /*public int Id { get; private set; }
+    public string Customer { get; private set; }
+    public string Item { get; private set; }
+    public int Amount { get; private set; }
+    public int Duration { get; private set; }
+    public int Award { get; private set; }
+    public float AcceptedTime { get; private set; }*/
 
     private void Load()
     {
@@ -261,6 +287,35 @@ public class Progress : MonoBehaviour
 
             ++index;
         }
+
+        index = 0;
+        _contractsManager.ClearContracts();
+        while (index < PlayerPrefs.GetInt("_contractsCount"))
+        {
+            Contract contract = new Contract(PlayerPrefs.GetInt($"_contract{index + 1}Id"),
+                                             PlayerPrefs.GetString($"_contract{index + 1}Customer"),
+                                             PlayerPrefs.GetString($"_contract{index + 1}Item"),
+                                             PlayerPrefs.GetInt($"_contract{index + 1}Amount"),
+                                             PlayerPrefs.GetInt($"_contract{index + 1}Duration"),
+                                             PlayerPrefs.GetInt($"_contract{index + 1}Award"));
+            _contractsManager.AddContract(contract);
+            ++index;
+        }
+
+        /*index = 0;
+        PlayerPrefs.SetInt("_contractsCount", _contractsManager.GetContractsCount());
+        while (index < _contractsManager.GetContractsCount())
+        {
+            PlayerPrefs.SetInt($"_contract{index + 1}Id", _contractsManager.GetContractId(index));
+            PlayerPrefs.SetString($"_contract{index + 1}Customer", _contractsManager.GetContractCustomer(index));
+            PlayerPrefs.SetString($"_contract{index + 1}Item", _contractsManager.GetContractItem(index));
+            PlayerPrefs.SetInt($"_contract{index + 1}Amount", _contractsManager.GetContractAmount(index));
+            PlayerPrefs.SetInt($"_contract{index + 1}Duration", _contractsManager.GetContractDuration(index));
+            PlayerPrefs.SetInt($"_contract{index + 1}Award", _contractsManager.GetContractAward(index));
+            PlayerPrefs.SetFloat($"_contract{index + 1}AcceptedTime", _contractsManager.GetContractAcceptedTime(index));
+
+            ++index;
+        }*/
     }
 
     private void ChangeCoinsAmount(int amount)

@@ -36,4 +36,9 @@ public class Contract
         Award = award;
         AcceptedTime = 0f;
     }
+
+    public override string ToString()
+    {
+        return $"contract #{Id} ({Item} : {Amount})";
+    }
 }

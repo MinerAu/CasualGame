@@ -37,6 +37,11 @@ public class ContractsManager : MonoBehaviour
         }
     }
 
+    public void ClearContracts()
+    {
+        _contracts.Clear();
+    }
+
     private IEnumerator ControlContracts()
     {
         var delay = new WaitForSecondsRealtime(0.025f);
@@ -73,4 +78,14 @@ public class ContractsManager : MonoBehaviour
             //Debug.Log("Control contracts cycle iteration");
         }
     }
+
+    public int GetContractsCount() => _contracts.Count;
+    public int GetContractId(int contractIndex) => _contracts[contractIndex].Id;
+    public string GetContractCustomer(int contractIndex) => _contracts[contractIndex].Customer;
+    public string GetContractItem(int contractIndex) => _contracts[contractIndex].Item;
+    public int GetContractAmount(int contractIndex) => _contracts[contractIndex].Amount;
+    public int GetContractDuration(int contractIndex) => _contracts[contractIndex].Duration;
+    public int GetContractAward(int contractIndex) => _contracts[contractIndex].Award;
+    public float GetContractAcceptedTime(int contractIndex) => _contracts[contractIndex].AcceptedTime;
+    public string GetContractAsString(int contractIndex) => _contracts[contractIndex].ToString();
 }
