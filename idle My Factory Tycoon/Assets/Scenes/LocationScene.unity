@@ -62129,6 +62129,7 @@ MonoBehaviour:
   _smartphones: 0
   _tables: 0
   _wheels: 0
+  _week: 0
   _workers:
   - {fileID: 919132148673576591}
   - {fileID: 919132149465682102}
@@ -62216,6 +62217,7 @@ MonoBehaviour:
   _wallet: {fileID: 230500297}
   _warehouse: {fileID: 894700102}
   _contractsManager: {fileID: 763515264}
+  _timeManager: {fileID: 1152315003}
 --- !u!4 &1901010760
 Transform:
   m_ObjectHideFlags: 0

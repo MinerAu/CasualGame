@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -33,6 +34,8 @@ public class Progress : MonoBehaviour
     [SerializeField] private int _tables;
     [SerializeField] private int _wheels;
 
+    [SerializeField] private int _week;
+
     [SerializeField] private List<Worker> _workers;
     [SerializeField] private List<GameObject> _workerButtons;
     [SerializeField] private List<Machine> _machines;
@@ -41,6 +44,7 @@ public class Progress : MonoBehaviour
     [SerializeField] private Wallet2 _wallet;
     [SerializeField] private Warehouse _warehouse;
     [SerializeField] private ContractsManager _contractsManager;
+    [SerializeField] private TimeManager _timeManager;
 
     private void Start()
     {
@@ -112,6 +116,8 @@ public class Progress : MonoBehaviour
 
             ++index;
         }
+
+        PlayerPrefs.SetInt(nameof(_week), _timeManager.GetCurrentWeek());
 
         PlayerPrefs.Save();
     }
@@ -300,6 +306,12 @@ public class Progress : MonoBehaviour
                                              PlayerPrefs.GetInt($"_contract{index + 1}Award"));
             _contractsManager.AddContract(contract);
             ++index;
+        }
+
+        if (PlayerPrefs.HasKey(nameof(_week)))
+        {
+            _week = PlayerPrefs.GetInt(nameof(_week));
+            _timeManager.SetCurrentWeek(_week);
         }
 
         /*index = 0;

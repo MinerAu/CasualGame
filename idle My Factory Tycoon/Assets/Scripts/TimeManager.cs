@@ -49,6 +49,12 @@ public class TimeManager : MonoBehaviour {
         return currentWeek;
     }
 
+    public void SetCurrentWeek(int value)
+    {
+        currentWeek = value;
+        UpdateWeekUI();
+    }
+
     protected virtual void OnWeekPassed(int week) {
         // Вызывается каждую неделю, можно добавить свою логику
         // Debug.Log($"Week {week} has passed!");
